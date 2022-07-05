@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+    }
+}
+
+rootProject.name = 'root'
+include 'core'
+include 'api-main'
+include 'api-admin'
+include 'domain-users'
+
