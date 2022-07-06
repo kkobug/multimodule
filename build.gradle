@@ -82,15 +82,14 @@ project(':api-admin') {
         format = 'json'
         outputDirectory = "${sourceSets.main.output.resourcesDir}/static/docs"
     }
-
-    test {
-        useJUnitPlatform()
-    }
+//    test {
+//        useJUnitPlatform()
+//    }
 }
 
 project(':api-main') {
     dependencies {
-        compile project(':domain-users')
+        compile project(':api-admin')
     }
 }
 
