@@ -1,5 +1,6 @@
 package com.multimodule.msa;
 
+import com.multimodule.msa.api.user.request.UserReq;
 import com.multimodule.msa.model.User;
 import com.multimodule.msa.repository.UserRepository;
 import com.multimodule.msa.service.UserService;
@@ -29,6 +30,23 @@ class ApiApplicationTests {
 
         // then
         assertThat(givenUser.getId()).isEqualTo(whenUser.getId());
+    }
+
+    @Test
+    void 사용자_생성() {
+        // given
+        UserReq userReq = UserReq.builder().username("김범수").domain("daum.net").nickname("KBS").build();
+        User givenUser = User.builder()
+                .username(userReq.getUsername())
+                .domain(userReq.getDomain())
+                .nickname(userReq.getNickname())
+                .build();
+
+        // when
+        Long whenUserId = userService.createUser(givenUser);
+
+        //then
+        assertThat(userReq.getNickname()).isEqualTo(userRepository.findById(whenUserId).get().getNickname());
     }
 
 }
